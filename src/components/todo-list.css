@@ -1,0 +1,16 @@
+.task_list__container{
+    height: 30vh;
+    border-radius: 2%;
+}
+
+.task_list{
+    overflow-y: scroll;
+    height: inherit;
+}
+
+.todo_list__form {
+    width: 100%;
+}
+.todo_list__item {
+    list-style-type: none;
+}
