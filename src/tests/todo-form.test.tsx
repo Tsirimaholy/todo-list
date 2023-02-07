@@ -1,7 +1,7 @@
 import React from "react";
-import TestRenderer, {act, create} from "react-test-renderer";
+import TestRenderer from "react-test-renderer";
 import {TodoForm} from "../components/todo-form";
-import {cleanup, render, screen, fireEvent} from "@testing-library/react";
+import {cleanup, fireEvent, render, screen} from "@testing-library/react";
 
 afterEach(() => {
     cleanup();
@@ -24,12 +24,12 @@ describe("Todo form component", () => {
     });
 
     it('should call the function that handle keydown', function () {
+        const DEFAULT_VALUE = "some value";
         const handleKeyEnterPressedMock = jest.fn();
-        render(<TodoForm onSubmit={handleKeyEnterPressedMock}/>);
+        render(<TodoForm onSubmit={handleKeyEnterPressedMock} defaultValue={DEFAULT_VALUE}/>);
         const input = screen.getAllByRole("textbox")[0] as HTMLInputElement;
 
-        fireEvent.keyDown(input)
-
+        fireEvent.keyDown(input, {key: "Enter"})
         expect(handleKeyEnterPressedMock).toHaveBeenCalled();
     })
 
@@ -58,7 +58,8 @@ describe("Todo form component", () => {
     it('should be hidden', function () {
         const handleKeyEnterPressedMock = jest.fn();
 
-        const {container: {childElementCount}} = render(<TodoForm onSubmit={handleKeyEnterPressedMock} visible={false}/>);
+        const {container: {childElementCount}} = render(<TodoForm onSubmit={handleKeyEnterPressedMock}
+                                                                  visible={false}/>);
         expect(childElementCount).toBeFalsy();
     });
 })
