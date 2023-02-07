@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todo Item should renders correctly 1`] = `
+Array [
+  <input
+    onClick={[MockFunction]}
+    type="checkbox"
+  />,
+  <span>
+    some task
+  </span>,
+]
+`;
