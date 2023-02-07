@@ -63,7 +63,7 @@ describe('Todo Item', () => {
         const {length} = screen.queryAllByRole("checkbox");
         expect(length).toEqual(0);
 
-        const textWrapper = screen.getByText("some value") as HTMLSpanElement;
+        const textWrapper = screen.getByText("some task") as HTMLSpanElement;
         expect(textWrapper).toBeTruthy();
     });
 });
