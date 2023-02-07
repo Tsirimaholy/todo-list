@@ -44,4 +44,19 @@ describe('todo list component', function () {
         fireEvent.keyDown(textInput, {key: "Enter"});
         expect(onInsertMock).toHaveBeenCalled();
     });
+
+    it('should call the onDone func when the checkbox is clicked', function () {
+        const TODO_LIST_MOCK: TTask[] = [
+            {name: "todo1", done: false},
+        ]
+        const onDoneMock = jest.fn();
+
+        render(<TodoList taskList={TODO_LIST_MOCK} onDone={onDoneMock}/>);
+
+
+        const firstTodoCheckBox = screen.getAllByRole("checkbox")[0];
+        fireEvent.click(firstTodoCheckBox);
+
+        expect(onDoneMock).toHaveBeenCalled();
+    });
 });
