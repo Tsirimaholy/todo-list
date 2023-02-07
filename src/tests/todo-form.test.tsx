@@ -54,4 +54,11 @@ describe("Todo form component", () => {
 
         fireEvent.change(input, {target: {value: testValue}})
     });
+
+    it('should be hidden', function () {
+        const handleKeyEnterPressedMock = jest.fn();
+
+        const {container: {childElementCount}} = render(<TodoForm onSubmit={handleKeyEnterPressedMock} visible={false}/>);
+        expect(childElementCount).toBeFalsy();
+    });
 })
