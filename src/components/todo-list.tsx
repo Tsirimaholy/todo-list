@@ -21,9 +21,9 @@ const TodoList: FC<TTodoList> = ({taskList, onInsert, onDone, hideTodoForm = fal
         <div className="task_list__container">
             <TodoForm onSubmit={task => onInsert && onInsert(task)} visible={!hideTodoForm}/>
             <ul className="task_list">
-                {taskList.map(task =>
+                {taskList.map((task, index) =>
                     task.name && (
-                        <li className="todo_list__item">
+                        <li className="todo_list__item" key={index}>
                             <TodoItem onClick={() => onDone && onDone(task)} task={task}/>
                         </li>
                     ))}
