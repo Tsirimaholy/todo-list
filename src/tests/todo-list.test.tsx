@@ -41,8 +41,25 @@ describe('todo list component', function () {
 
         const textInput = screen.getByRole("textbox");
 
+        fireEvent.change(textInput, {target: {value: "some value"}})
         fireEvent.keyDown(textInput, {key: "Enter"});
         expect(onInsertMock).toHaveBeenCalled();
+    });
+
+    it('should not call onInsert funct when task name is empty', function () {
+        const TODO_LIST_MOCK: TTask[] = [
+            {name: "todo1", done: false},
+            {name: "todo2", done: true},
+            {name: "todo3", done: true}
+        ]
+        const onInsertMock = jest.fn();
+
+        render(<TodoList taskList={TODO_LIST_MOCK} onInsert={onInsertMock}/>);
+
+        const textInput = screen.getByRole("textbox");
+
+        fireEvent.keyDown(textInput, {key: "Enter"});
+        expect(onInsertMock).not.toHaveBeenCalled();
     });
 
     it('should call the onDone func when the checkbox is clicked', function () {
