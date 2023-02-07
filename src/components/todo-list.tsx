@@ -11,20 +11,20 @@ export type TTask = {
 
 type TTodoList = {
     taskList: TTask[];
-    isDoneList?: boolean
+    hideTodoForm?: boolean
     onInsert?: (task: TTask) => void
     onDone?: (task: TTask) => void
 }
 
-const TodoList: FC<TTodoList> = ({taskList, onInsert, onDone, isDoneList = false}) => {
+const TodoList: FC<TTodoList> = ({taskList, onInsert, onDone, hideTodoForm = false}) => {
     return (
         <div className="task_list__container">
-            {!isDoneList && <TodoForm onSubmit={task => onInsert && onInsert(task)}/>}
+            <TodoForm onSubmit={task => onInsert && onInsert(task)} visible={!hideTodoForm}/>
             <ul className="task_list">
                 {taskList.map(task =>
                     task.name && (
                         <li className="todo_list__item">
-                            <TodoItem isDone={isDoneList} onClick={() => onDone && onDone(task)} task={task}/>
+                            <TodoItem onClick={() => onDone && onDone(task)} task={task}/>
                         </li>
                     ))}
             </ul>

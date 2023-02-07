@@ -32,7 +32,7 @@ function App() {
                 <h1>Done</h1>
                 <TodoList
                     taskList={tasks.filter(task => task.done)}
-                    isDoneList={true}
+                    hideTodoForm={true}
                 />
             </div>
         </main>
