@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {TodoForm} from "./todo-form";
 import "./todo-list.css"
+import {TodoItem} from "./todo-item";
 
 export type TTask = {
     name: string;
@@ -14,6 +15,7 @@ type TTodoList = {
     onInsert?: (task: TTask) => void
     onDone?: (task: TTask) => void
 }
+
 const TodoList: FC<TTodoList> = ({taskList, onInsert, onDone, isDoneList = false}) => {
     return (
         <div className="task_list__container">
@@ -22,8 +24,7 @@ const TodoList: FC<TTodoList> = ({taskList, onInsert, onDone, isDoneList = false
                 {taskList.map(task =>
                     task.name && (
                         <li className="todo_list__item">
-                            {!isDoneList && <input type={"checkbox"} onClick={() => onDone && onDone(task)}/>}
-                            {task.name}
+                            <TodoItem isDone={isDoneList} onClick={() => onDone && onDone(task)} task={task}/>
                         </li>
                     ))}
             </ul>
