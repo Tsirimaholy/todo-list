@@ -2,7 +2,7 @@ import {create} from "react-test-renderer";
 import {TodoItem} from "../components/todo-item";
 import React from "react";
 import {TTask} from "../components/todo-list";
-import {cleanup, render, screen} from "@testing-library/react";
+import {cleanup, fireEvent, render, screen} from "@testing-library/react";
 
 afterEach(() => {
     cleanup();
@@ -65,5 +65,19 @@ describe('Todo Item', () => {
 
         const textWrapper = screen.getByText("some task") as HTMLSpanElement;
         expect(textWrapper).toBeTruthy();
+    });
+
+    it('should call onClick when the check box is clicked', function () {
+        const onClickMock = jest.fn();
+        const taskMock: TTask = {
+            name: "some task",
+            done: false
+        };
+        render(<TodoItem onClick={onClickMock} task={taskMock}/>);
+
+        const checkBox = screen.getByRole("checkbox") as HTMLInputElement;
+        fireEvent.click(checkBox);
+
+        expect(onClickMock).toHaveBeenCalled();
     });
 });
