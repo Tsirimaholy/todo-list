@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`todo list component should render correctly 1`] = `
+<div
+  className="task_list__container"
+>
+  <div
+    className="todo_list__form"
+  >
+    <input
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="todo-input"
+      type="text"
+      value=""
+    />
+  </div>
+  <ul
+    className="task_list"
+  />
+</div>
+`;
